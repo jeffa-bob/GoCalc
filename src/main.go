@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/g3n/engine/app"
 	"github.com/g3n/engine/camera"
 	"github.com/g3n/engine/core"
@@ -14,6 +15,7 @@ import (
 	"github.com/g3n/engine/renderer"
 	"github.com/g3n/engine/util/helper"
 	"github.com/g3n/engine/window"
+	"math/rand"
 	"time"
 )
 
@@ -46,7 +48,7 @@ func main() {
 	onResize("", nil)
 
 	// Create a blue torus and add it to the scene
-	geom := geometry.NewTorus(1, .4, 12, 32, math32.Pi*2)
+	geom := geometry.NewCone(1, 2, 100, 100, true)
 	mat := material.NewStandard(math32.NewColor("DarkBlue"))
 	mesh := graphic.NewMesh(geom, mat)
 	scene.Add(mesh)
@@ -56,7 +58,10 @@ func main() {
 	btn.SetPosition(100, 40)
 	btn.SetSize(40, 40)
 	btn.Subscribe(gui.OnClick, func(name string, ev interface{}) {
-		mat.SetColor(math32.NewColor("DarkRed"))
+		rand.Seed(time.Now().UnixNano())
+		a := &math32.Color{float32(rand.Intn(255)), float32(rand.Intn(255)), float32(rand.Intn(255))}
+		fmt.Printf("%d %d %d", int(a.R), int(a.G), int(a.B))
+		mat.SetColor(a)
 	})
 	scene.Add(btn)
 
