@@ -67,7 +67,7 @@ func main() {
 	scene.Add(pointLight)
 
 	// Create and add an axis helper to the scene
-	scene.Add(helper.NewAxes(0.5))
+	//scene.Add(helper.NewAxes(0.5))
 
 	// Set background color to gray
 	a.Gls().ClearColor(0.5, 0.5, 0.5, 1.0)
